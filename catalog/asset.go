@@ -5,4 +5,3 @@ type Asset struct {
 	AssetType int `gorm:"default:1" json:"type"` // default is magazine(type:1)
 	MagazineId int `gorm:"type:bigint REFERENCES magazines(magazine_id)" json:"-"`
 }
-gt
