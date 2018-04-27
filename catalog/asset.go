@@ -25,25 +25,23 @@ var AssetType = graphql.NewObject(
 	},
 )
 
-var AssetsField = graphql.Fields{
-	"assets": &graphql.Field{
-		Type: graphql.NewList(AssetType),
-		Args: graphql.FieldConfigArgument{
-			"id": &graphql.ArgumentConfig{
-				Type: graphql.Int,
-			},
-			"type": &graphql.ArgumentConfig{
-				Type: graphql.Int,
-			},
+var AssetsField = graphql.Field{
+	Type: graphql.NewList(AssetType),
+	Args: graphql.FieldConfigArgument{
+		"id": &graphql.ArgumentConfig{
+			Type: graphql.Int,
 		},
-		Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-			var assets []Asset
-			if id, ok := p.Args["id"]; ok {
-				db.DBCon.Where(&Asset{AssetId: id.(int)}).Find(&assets)
-			} else {
-				db.DBCon.Find(&assets)
-			}
-			return assets, nil
+		"type": &graphql.ArgumentConfig{
+			Type: graphql.Int,
 		},
+	},
+	Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+		var assets []Asset
+		if id, ok := p.Args["id"]; ok {
+			db.DBCon.Where(&Asset{AssetId: id.(int)}).Find(&assets)
+		} else {
+			db.DBCon.Find(&assets)
+		}
+		return assets, nil
 	},
 }

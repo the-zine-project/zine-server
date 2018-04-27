@@ -18,7 +18,10 @@ type graphqlBody struct {
 var queryType = graphql.NewObject(
 	graphql.ObjectConfig{
 		Name:   "Query",
-		Fields: catalog.AssetsField,
+		Fields: graphql.Fields{
+			"assets": &catalog.AssetsField,
+			"magazines": &catalog.MagazinesField,
+		},
 	})
 
 var schema, _ = graphql.NewSchema(
