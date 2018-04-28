@@ -17,9 +17,9 @@ type graphqlBody struct {
 
 var queryType = graphql.NewObject(
 	graphql.ObjectConfig{
-		Name:   "Query",
+		Name: "Query",
 		Fields: graphql.Fields{
-			"assets": &catalog.AssetsField,
+			"assets":    &catalog.AssetsField,
 			"magazines": &catalog.MagazinesField,
 		},
 	})
@@ -44,6 +44,7 @@ func executeQuery(query string, schema graphql.Schema) *graphql.Result {
 
 func main() {
 	db.InitDB()
+	db.DBCon.Debug().AutoMigrate(&catalog.Publication{}, &catalog.Magazine{}, &catalog.Asset{})
 	defer db.DBCon.Close()
 
 	http.HandleFunc("/graphql", func(w http.ResponseWriter, r *http.Request) {

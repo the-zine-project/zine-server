@@ -15,8 +15,4 @@ func InitDB() {
 	DBCon, _ = gorm.Open("postgres",
 		"host=127.0.0.1 port=5432 user=postgres dbname=dev password=password sslmode=disable")
 	DBCon.LogMode(true)
-
-	// TODO Fix cyclic import
-	//DBCon.Debug().AutoMigrate(&catalog.Publication{}, &catalog.Magazine{}, &catalog.Asset{})
-	//defer DBCon.Close()
 }
