@@ -37,11 +37,17 @@ var AssetsField = graphql.Field{
 	},
 	Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 		var assets []Asset
-		if id, ok := p.Args["id"]; ok {
-			db.DBCon.Where(&Asset{AssetId: id.(int)}).Find(&assets)
-		} else {
-			db.DBCon.Find(&assets)
+		query := db.DBCon.Where("")
+
+		if magazine, ok := p.Source.(Magazine); ok {
+			query = query.Where(&Asset{MagazineId: magazine.MagazineId})
 		}
+
+		if id, ok := p.Args["id"]; ok {
+			query.Where(&Asset{AssetId: id.(int)})
+		}
+
+		query.Find(&assets)
 		return assets, nil
 	},
 }

@@ -27,9 +27,13 @@ var MagazineType = graphql.NewObject(
 			"title": &graphql.Field{
 				Type: graphql.String,
 			},
+			"coverImageURL": &graphql.Field{
+				Type: graphql.String,
+			},
 			"issueNumber": &graphql.Field{
 				Type: graphql.Int,
 			},
+			"assets": &AssetsField,
 		},
 	},
 )
