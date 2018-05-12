@@ -21,6 +21,7 @@ var queryType = graphql.NewObject(
 		Fields: graphql.Fields{
 			"assets":    &catalog.AssetsField,
 			"magazines": &catalog.MagazinesField,
+			"publications": &catalog.PublicationField,
 		},
 	})
 
