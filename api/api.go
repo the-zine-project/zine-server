@@ -7,8 +7,8 @@ import (
 	"github.com/graphql-go/graphql"
 	"net/http"
 	"os"
-	"zine/catalog"
-	"zine/db"
+	"github.com/the-zine-project/zine-server/catalog"
+	"github.com/the-zine-project/zine-server/db"
 )
 
 type graphqlBody struct {

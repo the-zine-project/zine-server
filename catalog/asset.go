@@ -2,7 +2,7 @@ package catalog
 
 import (
 	"github.com/graphql-go/graphql"
-	"zine/db"
+	"github.com/the-zine-project/zine-server/db"
 )
 
 type Asset struct {
